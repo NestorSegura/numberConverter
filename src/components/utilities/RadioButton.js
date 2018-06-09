@@ -7,7 +7,8 @@ const RadioButton = (props) => {
                 type="radio"
                 name={props.name}
                 value={props.value}
-                onChange={props.onchangeHandler}/>
+                onChange={props.onchangeHandler}
+            />
             <span>{props.labelValue}</span>
         </label>
     )
