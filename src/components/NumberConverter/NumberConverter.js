@@ -1,8 +1,12 @@
 import React from 'react';
 
 const NumberConverter = (props) => {
+    let conversionValue = null;
+    if(props.value !== 0) {
+        conversionValue = props.decimalToRomanHandler(props.value);
+    }
 
-    const conversionLog = props.conversionValue ? `<p>${props.conversionValue}</p>` : null
+    const conversionLog = conversionValue ? conversionValue : null
 
     return (
         <div className="numberConverter-container" style={{maxWidth: "450px", margin: "auto"}}>
@@ -20,7 +24,7 @@ const NumberConverter = (props) => {
             </span>
 
             <p> Input: { props.value ? props.value : null } </p>
-            <p> Conversion: { props.conversionValue ? props.conversionValue : null}</p>
+            <p> Conversion: {conversionLog} </p>
         </div>
     )
 }
