@@ -74,30 +74,6 @@ class App extends Component {
         })
     }
 
-    errorMessageHandler = (e) => {
-
-        let inputType = e.target.type;
-        let inputValueType = typeof e.target.valueAsNumber;
-
-        if (inputType === inputValueType) {
-            this.setState({
-                ...this.state.error,
-                error: {
-                    show: false,
-                    errorMessage: ""
-                }
-            })
-        } else {
-            this.setState({
-                ...this.state.error,
-                error: {
-                    show: true,
-                    errorMessage: "Please enter a correct value of type: " + inputType
-                }
-            })
-        }
-    }
-
     setConversionOperation = (radioButtonValue) => {
         switch (radioButtonValue) {
             case "d2r":
@@ -109,7 +85,6 @@ class App extends Component {
     }
 
     decimalsToRoman = (value) => {
-        // not working 
         if (value < 1 && this.state.keyPressed) {
             alert("this program only accepts numbers grater than 0")
             this.setState({
@@ -129,9 +104,10 @@ class App extends Component {
                 conversionValue: ""
             })
         }
-        let i = 0;
-        let romanNumber = "";
-        let localValue = value;
+        let i = 0,
+        romanNumber = "",
+        localValue = value;
+        
         while (localValue > 0) {
             if (localValue - this.state.decimalNumbers[i] >= 0) {
                 romanNumber = romanNumber + this.state.romanNumbers[i]
