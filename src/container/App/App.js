@@ -107,7 +107,7 @@ class App extends Component {
         let i = 0,
         romanNumber = "",
         localValue = value;
-        
+
         while (localValue > 0) {
             if (localValue - this.state.decimalNumbers[i] >= 0) {
                 romanNumber = romanNumber + this.state.romanNumbers[i]
@@ -185,7 +185,6 @@ class App extends Component {
                     changeHandler={(e) => this.inputChangeHandler(e)}
                     errorToggle={this.state.error.show}
                     errorMessage={this.state.errorMessage}
-                    onKeyPressed={e => this.errorMessageHandler(e)}
                     conversionHandler={this.state.operation}
                     conversionValue={this.state.conversionValue}
                 />
