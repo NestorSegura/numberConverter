@@ -3,7 +3,7 @@ import React from 'react';
 const NumberConverter = (props) => {
     let conversionValue = null;
     if(props.value !== 0) {
-        conversionValue = props.decimalToRomanHandler(props.value);
+        conversionValue = props.conversionHandler(props.value);
     }
 
     const conversionLog = conversionValue ? conversionValue : null

@@ -29,6 +29,7 @@ class App extends Component {
             show: false,
             errorMessage: null
         },
+        keyPressed: false,
         romanNumbers: ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"],
         decimalNumbers: [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
         binaryNumbers: [512, 256, 128, 64, 32, 16, 8, 4, 2, 1],
@@ -46,7 +47,8 @@ class App extends Component {
                 numberConverter: {
                     ...this.state.numberConverter.value,
                     value: e.target.valueAsNumber
-                }
+                },
+                keyPressed: true
             })
 
             if (this.state.opValue !== 0) {
@@ -64,8 +66,10 @@ class App extends Component {
         this.setState({
             ...this.state.numberConverter,
             numberConverter: {
+                value: "",
                 placeholder: selectedRadioButton.placeholder
             },
+            keyPressed: false,
             operation: this.setConversionOperation(selectedRadioButton.value)
         })
     }
@@ -106,7 +110,7 @@ class App extends Component {
 
     decimalsToRoman = (value) => {
         // not working 
-        if (value < 1) {
+        if (value < 1 && this.state.keyPressed) {
             alert("this program only accepts numbers grater than 0")
             this.setState({
                 ...this.state.numberConverter,
@@ -115,7 +119,7 @@ class App extends Component {
                 },
                 conversionValue: ""
             })
-        } else if (value > 3999) {
+        } else if (value > 3999 && this.state.keyPressed) {
             alert("this program only accepts numbers until 3999")
             this.setState({
                 ...this.state.numberConverter,
@@ -206,7 +210,7 @@ class App extends Component {
                     errorToggle={this.state.error.show}
                     errorMessage={this.state.errorMessage}
                     onKeyPressed={e => this.errorMessageHandler(e)}
-                    decimalToRomanHandler={this.state.operation}
+                    conversionHandler={this.state.operation}
                     conversionValue={this.state.conversionValue}
                 />
 
