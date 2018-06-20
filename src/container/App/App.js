@@ -1,26 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import NumberConverter from '../../components/NumberConverter/NumberConverter';
 import RadioButton from '../../components/utilities/RadioButton.js';
 
 class App extends Component {
     state = {
-        radioButtons: [
-            {
-                name: "nc-action",
-                value: "d2r",
-                placeholder: "Please enter a decimal number",
-                labelValue: "Decimal to Roman",
-                id: Math.floor((Math.random() * 999999) + 1)
-            },
-            {
-                value: "b2r",
-                name: "nc-action",
-                placeholder: "Please enter a binary number",
-                labelValue: "Binary to Roman",
-                id: Math.floor((Math.random() * 999999) + 1)
-            }
-        ],
         numberConverter: {
             value: 0,
             placeholder: "",
@@ -39,7 +23,6 @@ class App extends Component {
         operation: null
     }
 
-
     inputChangeHandler = (e) => {
         if (this.state.operation) {
             this.setState({
@@ -52,7 +35,7 @@ class App extends Component {
             })
 
             if (this.state.opValue !== 0) {
-                this.setState({ opValue: this.state.numberConverter.value })
+                this.setState({opValue: this.state.numberConverter.value})
             }
         } else {
             alert("please select an option to start the conversion")
@@ -61,8 +44,8 @@ class App extends Component {
 
     }
 
-    rbChangeHandler = (e) => {
-        let selectedRadioButton = this.state.radioButtons.find(item => item.value === e.target.value);
+    rbChangeHandler = (e, radioButtons) => {
+        let selectedRadioButton = radioButtons.find(item => item.value === e.target.value);
         this.setState({
             ...this.state.numberConverter,
             numberConverter: {
@@ -105,8 +88,8 @@ class App extends Component {
             })
         }
         let i = 0,
-        romanNumber = "",
-        localValue = value;
+            romanNumber = "",
+            localValue = value;
 
         while (localValue > 0) {
             if (localValue - this.state.decimalNumbers[i] >= 0) {
@@ -122,15 +105,15 @@ class App extends Component {
 
     binaryToRoman = (value) => {
         let decimalNumber = 0;
-        
-        if(value) {
-            if(value.toString().length < 10){
+
+        if (value) {
+            if (value.toString().length < 10) {
                 let binaryToDecimal = value.toString().split("").map((n, i) => {
-                    if(n === "1" || n === "0") {
+                    if (n === "1" || n === "0") {
                         if (n === "1") {
                             decimalNumber += this.state.binaryNumbers[i];
-                        }  
-                    }else {
+                        }
+                    } else {
                         alert("please enter a valid binary numer for example 101");
                         this.setState({
                             ...this.state.numberConverter,
@@ -140,7 +123,7 @@ class App extends Component {
                         })
                     }
                 })
-            }else {
+            } else {
                 alert("this function only accepts binary numbers until 10 digits")
 
                 this.setState({
@@ -152,21 +135,38 @@ class App extends Component {
             }
         }
 
-        if(decimalNumber > 0) {
+        if (decimalNumber > 0) {
             return this.decimalsToRoman(decimalNumber)
         }
     }
 
     render() {
 
-        const rb = this.state.radioButtons.map(
+        const radioButtons = [
+            {
+                name: "nc-action",
+                value: "d2r",
+                placeholder: "Please enter a decimal number",
+                labelValue: "Decimal to Roman",
+                id: Math.floor((Math.random() * 999999) + 1)
+            },
+            {
+                value: "b2r",
+                name: "nc-action",
+                placeholder: "Please enter a binary number",
+                labelValue: "Binary to Roman",
+                id: Math.floor((Math.random() * 999999) + 1)
+            }
+        ]
+
+        const rb = radioButtons.map(
             (item, i) => {
                 return (<RadioButton
                     key={item.id}
                     name={item.name}
                     value={item.value}
                     labelValue={item.labelValue}
-                    onchangeHandler={(e) => this.rbChangeHandler(e)}
+                    onchangeHandler={(e) => this.rbChangeHandler(e, radioButtons)}
                     checked
                 />);
             }
@@ -175,8 +175,8 @@ class App extends Component {
         return (
 
             <div className="App">
-                <h1 style={{ textAlign: "center" }}>Number Converter from * to Roman</h1>
-                <div style={{ marginBottom: "1em", textAlign: "center" }}>
+                <h1 style={{textAlign: "center"}}>Number Converter from * to Roman</h1>
+                <div style={{marginBottom: "1em", textAlign: "center"}}>
                     {rb}
                 </div>
                 <NumberConverter
