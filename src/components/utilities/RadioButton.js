@@ -8,6 +8,7 @@ const RadioButton = (props) => {
                 name={props.name}
                 value={props.value}
                 onChange={props.onchangeHandler}
+                checked={props.checked}
             />
             <span>{props.labelValue}</span>
         </label>

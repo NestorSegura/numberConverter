@@ -3,7 +3,7 @@ import React from 'react';
 const NumberConverter = (props) => {
     let conversionValue = null;
     if(props.value !== 0) {
-        conversionValue = props.conversionHandler(props.value);
+        conversionValue = props.conversionHandler(props.value, ...props.conversionHandlerParameters);
     }
 
     const conversionLog = conversionValue ? conversionValue : null
@@ -12,7 +12,7 @@ const NumberConverter = (props) => {
         <div className="numberConverter-container" style={{maxWidth: "450px", margin: "auto"}}>
             <input
                 style={{width: "100%", textAlign: "center"}}
-                type="number"
+                type="string"
                 value={props.value}
                 placeholder={props.placeholder}
                 onChange={props.changeHandler}

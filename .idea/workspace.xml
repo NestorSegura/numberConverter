@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f50227a5-f7ef-4c20-bc3d-9839561638c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NumberConverter/NumberConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NumberConverter/NumberConverter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/utilities/RadioButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/utilities/RadioButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/App/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,16 +15,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="RadioButton.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/utilities/RadioButton.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/container/App/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="168" column="80" selection-start-line="168" selection-start-column="80" selection-end-line="168" selection-end-column="80" />
+            <state relative-caret-position="471">
+              <caret line="184" column="16" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NumberConverter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/NumberConverter/NumberConverter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>setConversionOperation</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,9 +58,9 @@
         <option value="$PROJECT_DIR$/src/components/utilities/radioButton" />
         <option value="$PROJECT_DIR$/src/components/utilities/RadioButton" />
         <option value="$PROJECT_DIR$/src/container/App/App.css" />
-        <option value="$PROJECT_DIR$/src/components/utilities/RadioButton.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/components/NumberConverter/NumberConverter.js" />
+        <option value="$PROJECT_DIR$/src/components/utilities/RadioButton.js" />
         <option value="$PROJECT_DIR$/src/container/App/App.js" />
       </list>
     </option>
@@ -55,10 +79,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1920" />
-    <option name="height" value="977" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -86,6 +109,13 @@
               <item name="numberConverter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="numberConverter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="numberConverter" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="NumberConverter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="numberConverter" type="b2602c69:ProjectViewProjectNode" />
@@ -191,15 +221,15 @@
       <workItem from="1527942766792" duration="3237000" />
       <workItem from="1528910807373" duration="621000" />
       <workItem from="1528918888641" duration="31000" />
-      <workItem from="1529528790233" duration="384000" />
+      <workItem from="1529528790233" duration="11276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4273000" />
+    <option name="totallyTimeSpent" value="15165000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="977" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -212,10 +242,10 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3318182" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.29054725" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2603834" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2603834" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -282,22 +312,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NumberConverter/NumberConverter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="63" lean-forward="true" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
+        <state relative-caret-position="285">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/utilities/RadioButton.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+        <state relative-caret-position="150">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/App/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="168" column="80" selection-start-line="168" selection-start-column="80" selection-end-line="168" selection-end-column="80" />
+        <state relative-caret-position="471">
+          <caret line="184" column="16" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
         </state>
       </provider>
     </entry>

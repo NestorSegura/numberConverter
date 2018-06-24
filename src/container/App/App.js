@@ -9,27 +9,47 @@ class App extends Component {
             value: 0,
             placeholder: "",
         },
-        error: {
-            show: false,
-            errorMessage: null
-        },
+        error: false,
+        errorMessage: "something went wrong",
         keyPressed: false,
-        romanNumbers: ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"],
-        decimalNumbers: [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
-        binaryNumbers: [512, 256, 128, 64, 32, 16, 8, 4, 2, 1],
         loopIndex: 0,
         opValue: 0,
         conversionValue: "",
-        operation: null
+        operation: null,
+        radioButtons: [
+            {
+                name: "nc-action",
+                value: "d2r",
+                placeholder: "Please enter a decimal number",
+                labelValue: "Decimal to Roman",
+                id: Math.floor((Math.random() * 999999) + 1),
+                checked: false
+            },
+            {
+                value: "b2r",
+                name: "nc-action",
+                placeholder: "Please enter a binary number",
+                labelValue: "Binary to Roman",
+                id: Math.floor((Math.random() * 999999) + 1),
+                checked: false
+            }
+        ]
     }
 
     inputChangeHandler = (e) => {
-        if (this.state.operation) {
+
+        let numberConverterValue = 0;
+
+        if (parseInt(e.target.value, 10)) {
+            numberConverterValue = parseInt(e.target.value, 10);
+        }
+
+        if (this.state.operation && !this.state.error) {
             this.setState({
                 ...this.state.numberConverter,
                 numberConverter: {
                     ...this.state.numberConverter.value,
-                    value: e.target.valueAsNumber
+                    value: numberConverterValue
                 },
                 keyPressed: true
             })
@@ -37,6 +57,7 @@ class App extends Component {
             if (this.state.opValue !== 0) {
                 this.setState({opValue: this.state.numberConverter.value})
             }
+
         } else {
             alert("please select an option to start the conversion")
         }
@@ -46,55 +67,54 @@ class App extends Component {
 
     rbChangeHandler = (e, radioButtons) => {
         let selectedRadioButton = radioButtons.find(item => item.value === e.target.value);
-        this.setState({
-            ...this.state.numberConverter,
-            numberConverter: {
-                value: "",
-                placeholder: selectedRadioButton.placeholder
-            },
-            keyPressed: false,
-            operation: this.setConversionOperation(selectedRadioButton.value)
-        })
+
+        if (!this.state.error) {
+            this.setState({
+                ...this.state.numberConverter,
+                numberConverter: {
+                    value: "",
+                    placeholder: selectedRadioButton.placeholder
+                },
+                keyPressed: false,
+                operation: this.setConversionOperation(selectedRadioButton.value)
+            })
+        }
     }
 
     setConversionOperation = (radioButtonValue) => {
         switch (radioButtonValue) {
             case "d2r":
                 return this.decimalsToRoman;
-                break;
             case "b2r":
                 return this.binaryToRoman;
+            default:
+                return
         }
     }
 
-    decimalsToRoman = (value) => {
+    decimalsToRoman = (value, romanNumbers, decimalNumbers) => {
+        let errorMessage;
+
         if (value < 1 && this.state.keyPressed) {
-            alert("this program only accepts numbers grater than 0")
-            this.setState({
-                ...this.state.numberConverter,
-                numberConverter: {
-                    value: 0
-                },
-                conversionValue: ""
-            })
+            errorMessage = "this program only accepts numbers grater than 0"
+            let errorArray = [true, errorMessage];
+
+            return errorArray
         } else if (value > 3999 && this.state.keyPressed) {
-            alert("this program only accepts numbers until 3999")
-            this.setState({
-                ...this.state.numberConverter,
-                numberConverter: {
-                    value: 0
-                },
-                conversionValue: ""
-            })
+            errorMessage = "this program can convert numbers until 3999";
+            let errorArray = [true, errorMessage];
+
+            return errorArray
         }
+
         let i = 0,
             romanNumber = "",
             localValue = value;
 
         while (localValue > 0) {
-            if (localValue - this.state.decimalNumbers[i] >= 0) {
-                romanNumber = romanNumber + this.state.romanNumbers[i]
-                localValue = localValue - this.state.decimalNumbers[i]
+            if (localValue - decimalNumbers[i] >= 0) {
+                romanNumber = romanNumber + romanNumbers[i]
+                localValue = localValue - decimalNumbers[i]
             } else {
                 i = i + 1
             }
@@ -103,71 +123,42 @@ class App extends Component {
         return romanNumber;
     }
 
-    binaryToRoman = (value) => {
+    binaryToRoman = (value, decimalNumbers, romanNumbers) => {
         let decimalNumber = 0;
 
         if (value) {
-            if (value.toString().length < 10) {
-                let binaryToDecimal = value.toString().split("").map((n, i) => {
-                    if (n === "1" || n === "0") {
-                        if (n === "1") {
-                            decimalNumber += this.state.binaryNumbers[i];
-                        }
-                    } else {
-                        alert("please enter a valid binary numer for example 101");
-                        this.setState({
-                            ...this.state.numberConverter,
-                            numberConverter: {
-                                value: ""
-                            }
-                        })
-                    }
-                })
-            } else {
-                alert("this function only accepts binary numbers until 10 digits")
-
-                this.setState({
-                    ...this.state.numberConverter,
-                    numberConverter: {
-                        value: ""
-                    }
-                })
-            }
+            decimalNumber = value.toString().split("").reduce((previousValue, n, i) => {
+                if (n === "1" || n === "0") {
+                    let binaryNumber = parseInt(n, 2);
+                    return previousValue + (Math.pow(2, i) * binaryNumber)
+                } else {
+                    alert("please enter a valid binary numer for example 101");
+                    return 0
+                }
+            }, 0)
         }
 
         if (decimalNumber > 0) {
-            return this.decimalsToRoman(decimalNumber)
+            return this.decimalsToRoman(decimalNumber, decimalNumbers, romanNumbers)
         }
     }
 
     render() {
 
-        const radioButtons = [
-            {
-                name: "nc-action",
-                value: "d2r",
-                placeholder: "Please enter a decimal number",
-                labelValue: "Decimal to Roman",
-                id: Math.floor((Math.random() * 999999) + 1)
-            },
-            {
-                value: "b2r",
-                name: "nc-action",
-                placeholder: "Please enter a binary number",
-                labelValue: "Binary to Roman",
-                id: Math.floor((Math.random() * 999999) + 1)
-            }
-        ]
+        const romanNumbers = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+        const decimalNumbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
 
-        const rb = radioButtons.map(
+        let conversionHandlerParameters = [romanNumbers, decimalNumbers];
+
+
+        const rb = this.state.radioButtons.map(
             (item, i) => {
                 return (<RadioButton
                     key={item.id}
                     name={item.name}
                     value={item.value}
                     labelValue={item.labelValue}
-                    onchangeHandler={(e) => this.rbChangeHandler(e, radioButtons)}
-                    checked
+                    onchangeHandler={(e) => this.rbChangeHandler(e, this.state.radioButtons)}
                 />);
             }
         );
@@ -177,7 +168,9 @@ class App extends Component {
             <div className="App">
                 <h1 style={{textAlign: "center"}}>Number Converter from * to Roman</h1>
                 <div style={{marginBottom: "1em", textAlign: "center"}}>
-                    {rb}
+                    <form>
+                        {rb}
+                    </form>
                 </div>
                 <NumberConverter
                     value={this.state.numberConverter.value}
@@ -186,10 +179,10 @@ class App extends Component {
                     errorToggle={this.state.error.show}
                     errorMessage={this.state.errorMessage}
                     conversionHandler={this.state.operation}
+                    conversionHandlerParameters={conversionHandlerParameters}
                     conversionValue={this.state.conversionValue}
                 />
 
-                <span>{this.state.error.show ? this.state.error.errorMessage : null}</span>
             </div>
         );
     }
