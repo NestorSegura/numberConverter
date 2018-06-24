@@ -12,9 +12,6 @@ class App extends Component {
         error: false,
         errorMessage: "something went wrong",
         keyPressed: false,
-        loopIndex: 0,
-        opValue: 0,
-        conversionValue: "",
         operation: null,
         radioButtons: [
             {
@@ -37,7 +34,6 @@ class App extends Component {
     }
 
     inputChangeHandler = (e) => {
-
         let numberConverterValue = 0;
 
         if (parseInt(e.target.value, 10)) {
@@ -53,10 +49,6 @@ class App extends Component {
                 },
                 keyPressed: true
             })
-
-            if (this.state.opValue !== 0) {
-                this.setState({opValue: this.state.numberConverter.value})
-            }
 
         } else {
             alert("please select an option to start the conversion")
@@ -180,7 +172,6 @@ class App extends Component {
                     errorMessage={this.state.errorMessage}
                     conversionHandler={this.state.operation}
                     conversionHandlerParameters={conversionHandlerParameters}
-                    conversionValue={this.state.conversionValue}
                 />
 
             </div>
